@@ -27,67 +27,67 @@ public class BinarySearchTree
     //Constructor
     public BinarySearchTree()
     {
-		 root = null;
+	    root = null;
     }
  
     // Method for inserting new values into the tree
     public void insert (int key)
-	{
-		 root = insertNode(root, key);
+    {
+	    root = insertNode(root, key);
     }
     // Insert recursive call for inserting from the root
     public Node insertNode (Node node, int key)
-	{   // base case
-	    if (node == null)
-		{ 
-			 node = new Node(key);
-			 return node;
-		}
-		if (key <= node.data)
-		{
+    {
+	    if (node == null) // base case
+	    {
+		    node = new Node(key);
+		    return node;
+	    }
+	    if (key <= node.data)
+	    {
 		    node.leftChild = insertNode(node.leftChild, key);
-		}
-		if (key > root.data)
-		{
+	    }
+	    if (key > root.data)
+	    {
 		    node.rightChild = insertNode(node.rightChild, key);
-		}
-		return node;
-	}
+	    }
+	    return node;
+    }
 	
     // Find method asking for the node to find
     public Node find(int key)
-	{
-		 Node node = findNode(root, key);
-		 return node;
+    {
+	    Node node = findNode(root, key);
+	    return node;
     }
     //Find recursive method using the root node.
     public Node findNode (Node node, int key)
 	{
 	    if (key == node.data)
 	    {
-			 return node;
-	    }	
-		if (key <= node.data) // less than or equal to goes to left
-		{
+		    return node;
+	    }
+	    if (key <= node.data) // less than or equal to goes to left
+	    {
 		    if (node.leftChild == null)
+		    {
+			    return null;
+		    }
+		    else
+		    {
+			    return findNode(node.leftChild, key);
+		    }
+		} 
+		if (key > node.data)
+		{
+			if (node.rightChild == null)
 			{
 				return null;
 			}
 			else
 			{
-				return findNode(node.leftChild, key);
+				return findNode(node.rightChild, key);
 			}
-		} 
-		if (key > node.data)
-		{
-			  if (node.rightChild == null)
-			  {
-				  return null;
-			  }
-			  else
-			  {
-				  return findNode(node.rightChild, key);
-			  }
 		} 
 		return node;
 	}
@@ -96,8 +96,6 @@ public class BinarySearchTree
 	{
 		BinarySearchTree binaryTree = new BinarySearchTree();
 		Scanner scanner = new Scanner(System.in);
-		
-	    
 		
 		for (int i = 1; i <= 10; i++) 
 		{   
